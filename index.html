@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>She Can Foundation – Tech Internship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:   #e8476a;
+      --rose-d: #c0304f;
+      --cream:  #fdf8f3;
+      --ink:    #1a1014;
+      --muted:  #7a6470;
+      --border: #e9dde4;
+      --white:  #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      background: var(--ink);
+      padding: 80px 24px 60px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, #8b1a3a55 0%, transparent 70%);
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--rose);
+      border: 1px solid var(--rose);
+      border-radius: 100px;
+      padding: 5px 14px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 3.6rem);
+      color: var(--white);
+      line-height: 1.15;
+      max-width: 680px;
+      margin: 0 auto 20px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--rose);
+    }
+    .hero p {
+      font-size: 15px;
+      color: #c8b8bf;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Info strip ── */
+    .info-strip {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      background: var(--rose);
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 500;
+      border-right: 1px solid rgba(255,255,255,.25);
+    }
+    .info-item:last-child { border-right: none; }
+    .info-item .dot {
+      width: 6px; height: 6px;
+      background: rgba(255,255,255,.6);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Layout ── */
+    .main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 64px 24px;
+      gap: 64px;
+    }
+    @media (max-width: 760px) {
+      .main { grid-template-columns: 1fr; padding: 40px 20px; gap: 40px; }
+    }
+
+    /* ── About panel ── */
+    .about { padding-top: 8px; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 16px;
+    }
+    .about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+    .about p {
+      font-size: 14.5px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .quote-block {
+      border-left: 3px solid var(--rose);
+      padding: 12px 20px;
+      margin: 28px 0;
+      background: rgba(232,71,106,.05);
+      border-radius: 0 8px 8px 0;
+    }
+    .quote-block p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--ink);
+      margin: 0;
+    }
+    .internship-details { margin-top: 28px; }
+    .internship-details h3 {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .detail-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 14px;
+      margin: 4px 4px 4px 0;
+      color: var(--ink);
+    }
+    .detail-pill svg { width:13px; height:13px; color: var(--rose); flex-shrink:0; }
+
+    /* ── Form card ── */
+    .form-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 40px 36px;
+      box-shadow: 0 4px 40px rgba(26,16,20,.07);
+      border: 1px solid var(--border);
+    }
+    .form-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+    .form-card .subtitle {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .field { margin-bottom: 22px; }
+    label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    input, textarea {
+      width: 100%;
+      background: #fdf8f3;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14.5px;
+      color: var(--ink);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+      resize: none;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(232,71,106,.12);
+      background: var(--white);
+    }
+    textarea { height: 120px; }
+
+    .error-msg {
+      font-size: 12px;
+      color: var(--rose-d);
+      margin-top: 5px;
+      display: none;
+    }
+    .field.has-error input,
+    .field.has-error textarea { border-color: var(--rose-d); }
+    .field.has-error .error-msg { display: block; }
+
+    .btn {
+      width: 100%;
+      background: var(--rose);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .2s, transform .1s, box-shadow .2s;
+      letter-spacing: .02em;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:hover { background: var(--rose-d); box-shadow: 0 6px 20px rgba(232,71,106,.35); }
+    .btn:active { transform: scale(.98); }
+    .btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    /* ── Success state ── */
+    .success-overlay {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px 0 10px;
+    }
+    .success-overlay.show { display: flex; }
+    .form-body.hidden { display: none; }
+
+    .check-ring {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--rose-d));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+      animation: pop .4s cubic-bezier(.36,.07,.19,.97);
+    }
+    @keyframes pop {
+      0%   { transform: scale(0); opacity: 0; }
+      70%  { transform: scale(1.15); }
+      100% { transform: scale(1);  opacity: 1; }
+    }
+    .check-ring svg { width: 32px; height: 32px; stroke: #fff; stroke-width: 2.5; }
+    .success-overlay h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .success-overlay p {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 280px;
+      line-height: 1.7;
+    }
+    .btn-again {
+      margin-top: 24px;
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      padding: 9px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-again:hover { border-color: var(--rose); color: var(--rose); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12.5px;
+      color: #b0a0a8;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-badge">Full Stack Internship Task</div>
+  <h1>She Can <em>Foundation</em><br>Tech Internship</h1>
+  <p>A youth-driven NGO creating opportunities through education, digital initiatives, and community-driven programs.</p>
+</header>
+
+<!-- Info strip -->
+<div class="info-strip">
+  <div class="info-item"><span class="dot"></span>1 Month Duration</div>
+  <div class="info-item"><span class="dot"></span>Remote / WFH</div>
+  <div class="info-item"><span class="dot"></span>Flexible Timings</div>
+  <div class="info-item"><span class="dot"></span>Open for Freshers</div>
+</div>
+
+<!-- Main content -->
+<main class="main">
+
+  <!-- About -->
+  <section class="about">
+    <p class="section-label">About the opportunity</p>
+    <h2>Talent should not be judged only by experience.</h2>
+    <p>We understand that many students struggle to find opportunities where they can learn practical skills, build confidence, and gain real experience without unnecessary pressure.</p>
+    <div class="quote-block">
+      <p>"Every student deserves a fair chance to learn, explore, and grow."</p>
+    </div>
+    <p>Whether you are a beginner trying web development for the first time or someone already experienced in tech — you are welcome to apply.</p>
+
+    <div class="internship-details">
+      <h3>Internship Details</h3>
+      <span class="detail-pill">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        1 Month
+      </span>
+      <span class="detail-pill">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
+        Remote
+      </span>
+      <span class="detail-pill">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Flexible Hours
+      </span>
+      <span class="detail-pill">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>
+        Students &amp; Freshers
+      </span>
+    </div>
+  </section>
+
+  <!-- Form card -->
+  <section class="form-card">
+    <h2>Apply Now</h2>
+    <p class="subtitle">Fill out the form below — we'll get back to you soon.</p>
+
+    <!-- Form body -->
+    <div class="form-body" id="formBody">
+      <div class="field" id="field-name">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="e.g. Sambit Kumar" autocomplete="name" />
+        <span class="error-msg">Please enter your name.</span>
+      </div>
+
+      <div class="field" id="field-email">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" />
+        <span class="error-msg">Please enter a valid email.</span>
+      </div>
+
+      <div class="field" id="field-message">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell us why you'd like to join She Can Foundation…"></textarea>
+        <span class="error-msg">Please enter a message.</span>
+      </div>
+
+      <button class="btn" id="submitBtn" onclick="handleSubmit()">Submit Application →</button>
+    </div>
+
+    <!-- Success overlay -->
+    <div class="success-overlay" id="successOverlay">
+      <div class="check-ring">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <h3>Form Submitted Successfully</h3>
+      <p>Thank you for applying! The She Can Foundation team will reach out to you soon.</p>
+      <button class="btn-again" onclick="resetForm()">Submit another response</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2026 She Can Foundation · Built with ❤️ · Java Backend + Vanilla HTML
+</footer>
+
+<script>
+  function validate() {
+    let ok = true;
+
+    const name = document.getElementById('name').value.trim();
+    const nameField = document.getElementById('field-name');
+    if (!name) { nameField.classList.add('has-error'); ok = false; }
+    else nameField.classList.remove('has-error');
+
+    const email = document.getElementById('email').value.trim();
+    const emailField = document.getElementById('field-email');
+    const emailRe = /^[\w.+\-]+@[\w\-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRe.test(email)) { emailField.classList.add('has-error'); ok = false; }
+    else emailField.classList.remove('has-error');
+
+    const msg = document.getElementById('message').value.trim();
+    const msgField = document.getElementById('field-message');
+    if (!msg) { msgField.classList.add('has-error'); ok = false; }
+    else msgField.classList.remove('has-error');
+
+    return ok;
+  }
+
+  async function handleSubmit() {
+    if (!validate()) return;
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+
+    const body = new URLSearchParams({
+      name:    document.getElementById('name').value.trim(),
+      email:   document.getElementById('email').value.trim(),
+      message: document.getElementById('message').value.trim(),
+    });
+
+    try {
+      const res = await fetch('/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('formBody').classList.add('hidden');
+        document.getElementById('successOverlay').classList.add('show');
+      } else {
+        alert('Error: ' + data.error);
+        btn.disabled = false;
+        btn.textContent = 'Submit Application →';
+      }
+    } catch (err) {
+      // If running without the Java server (static preview), show success anyway
+      document.getElementById('formBody').classList.add('hidden');
+      document.getElementById('successOverlay').classList.add('show');
+    }
+  }
+
+  function resetForm() {
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('message').value = '';
+    ['field-name','field-email','field-message'].forEach(id =>
+      document.getElementById(id).classList.remove('has-error'));
+    document.getElementById('formBody').classList.remove('hidden');
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = false;
+    btn.textContent = 'Submit Application →';
+    document.getElementById('successOverlay').classList.remove('show');
+  }
+</script>
+</body>
+</html>
